@@ -2,6 +2,7 @@
 
 Render elements consistently. Style with best practices.
 
+=> This Readme is from the original sanitize.css and has not been updated to init.css.
 
 
 ## Installation
