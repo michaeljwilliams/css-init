@@ -1,4 +1,10 @@
-/*! sanitize.css | CC0 Public Domain | github.com/jonathantneal/sanitize.css */
+/* init.css - A normalize.css, reset.css, and sanitize.css mashup with some extras
+ * contains initial properties and values for more easily starting web projects
+ *
+ * Michael J. Williams => me@mjwilliams.me
+ *
+ * This document is in the Public Domain.
+ */
 
 $default-box-sizing: border-box !default;
 $default-cursor: default !default;
@@ -8,12 +14,19 @@ $default-input-background: transparent !default;
 $default-line-height: 1.5em !default;
 $default-monospace-font-family: monospace !default;
 $default-nav-list-style: none !default;
-$default-selection-background-color: #B3D4FC !default;
+$default-selection-text-color: #FFFFFF !default;
+$default-selection-background-color: #444444 !default;
 $default-small-font-size: 75% !default;
 $default-text-rendering: optimizeLegibility !default;
 $default-textarea-resize: vertical !default;
 $default-vertical-align: top !default;
-
+//links
+$default-link-underline: none !default;
+$default-link-transition-time: .4s !default;
+$default-link-unvisited-color: #FF00A0 !default;
+$default-link-visited-color: #FFA0C0 !default;
+$default-link-hover-color: #FFA0C0 !default;
+$default-link-active-color: #FFA0C0 !default;
 
 
 /*
@@ -122,11 +135,16 @@ textarea {
 	border-width: 0;
 }
 
-// remove margin and padding everywhere
+// remove margin, padding, border everywhere
+// and I'll provide my own outlines, thank you very much
 
-* {
+*,
+*:before,
+*:after {
 	margin: 0;
 	padding: 0;
+	outline: none;
+	border: none;
 }
 
 // specify default styles in the document
@@ -138,6 +156,25 @@ textarea {
 	line-height: $default-line-height;
 	text-rendering: $default-text-rendering;
 	vertical-align: $default-vertical-align;
+}
+
+// links
+
+a {
+	transition: all $default-link-transition-time;
+	text-decoration: $default-link-underline;
+}
+a:link {
+	color: $default-link-unvisited-color;
+}
+a:visited { 
+  	color: $default-link-visited-color;
+}
+a:hover { 
+	color: $default-link-hover-color;
+}
+a:active  {
+	color: $default-link-active-color;
 }
 
 // specify or remove the background color on inputs
@@ -202,6 +239,7 @@ textarea {
 // specify text selection background color and omit drop shadow
 
 ::selection {
+	color: $default-selecti-text-color;
 	background-color: $default-selection-background-color; // required when declaring ::selection
 	text-shadow: none;
 }
@@ -217,4 +255,58 @@ textarea {
 		clip: rect(0 0 0 0) !important;
 		position: absolute !important;
 	}
+}
+
+// Correct overflow not hidden in IE 9/10/11
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+  border: none;
+}
+
+// Address `overflow` set to `hidden` in IE 8/9/10/11
+
+button {
+  overflow: visible;
+}
+
+// Remove default vertical scrollbar in IE 8/9/10/11
+
+textarea {
+  overflow: auto;
+}
+
+// Remove most spacing between table cells
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Remove list styles
+
+ol, ul {
+	list-style: none;
 }
