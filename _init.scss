@@ -239,7 +239,7 @@ textarea {
 // specify text selection background color and omit drop shadow
 
 ::selection {
-	color: $default-selecti-text-color;
+	color: $default-selection-text-color;
 	background-color: $default-selection-background-color; // required when declaring ::selection
 	text-shadow: none;
 }
